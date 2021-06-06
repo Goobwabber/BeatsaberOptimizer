@@ -1,0 +1,13 @@
+::from ./bsinstalldir.txt
+"Beat Saber_Data/Managed/
+""Main.dll?virt?alias=Beat Saber_Data\Managed\Main.dll
+
+"Libs/
+""0Harmony.dll?alias=Libs\0Harmony.dll
+
+::startopt
+"::resolveInHere Libs/
+""SemVer.dll?alias=Libs\SemVer.dll
+""Newtonsoft.Json.dll?alias=Libs\Newtonsoft.Json.dll
+"::resolveInHere Beat Saber_Data/Managed/
+""IPA.Loader.dll?alias=Beat Saber_Data\Managed\IPA.Loader.dll
