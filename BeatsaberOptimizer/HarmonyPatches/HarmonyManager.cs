@@ -26,7 +26,7 @@ namespace BeatsaberOptimizer.HarmonyPatches
 
         static HarmonyManager()
         {
-            
+            AddDefaultPatch<ObstaclePatch>();
         }
 
         private static void AddDefaultPatch<T>() where T : class

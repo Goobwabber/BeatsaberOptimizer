@@ -1,16 +1,14 @@
 ﻿using HarmonyLib;
 using IPA;
-using IPA.Config;
-using IPA.Config.Stores;
 using IPA.Loader;
-using System;
-using System.Threading.Tasks;
 using IPALogger = IPA.Logging.Logger;
 using System.Net.Http;
 using BeatsaberOptimizer.HarmonyPatches;
 using SiraUtil.Zenject;
 using BeatsaberOptimizer.Installers;
-using Zenject;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace BeatsaberOptimizer
 {
@@ -47,6 +45,19 @@ namespace BeatsaberOptimizer
         public void OnApplicationStart()
         {
             HarmonyManager.ApplyDefaultPatches();
+
+            //List<int> layerList = Enumerable.Range(0, 31).ToList();
+            //Log?.Info($"({LayerMask.LayerToName(11)}, {LayerMask.LayerToName(0)}): {Physics.GetIgnoreLayerCollision(0, 11)}");
+
+            //foreach (int layer in layerList)
+            //{
+            //    string name = LayerMask.LayerToName(layer).PadRight(26);
+            //    Log?.Info($"{name}: {LayerMask.LayerToName(8).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 8)}");
+            //    Log?.Info($"{name}: {LayerMask.LayerToName(9).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 9)}");
+            //    Log?.Info($"{name}: {LayerMask.LayerToName(11).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 11)}");
+            //    Log?.Info($"{name}: {LayerMask.LayerToName(12).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 12)}");
+            //    Log?.Info($"{name}: {LayerMask.LayerToName(16).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 16)}");
+            //}
         }
 
         [OnExit]

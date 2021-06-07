@@ -5,10 +5,12 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeatsaberOptimizer", "BeatsaberOptimizer\BeatsaberOptimizer.csproj", "{21EDF852-9743-4F90-91AC-3165B2D3B46D}"
 EndProject
-Project("{00000000-0000-0000-0000-000000000000}") = "Tools", "Tools", "{A8830DA8-0D40-4758-9C35-B9DFEDBE40AD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1F1D8B7D-8AD5-4BBE-99A9-07AF7BB0867E}"
 	ProjectSection(SolutionItems) = preProject
 		Refs\refs.txt = Refs\refs.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectDependencies", "BS-Plugin-BuildTools\CollectDependencies\CollectDependencies.csproj", "{5F33B310-DC8D-4C0D-877E-BAC3908DE10F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +22,14 @@ Global
 		{21EDF852-9743-4F90-91AC-3165B2D3B46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21EDF852-9743-4F90-91AC-3165B2D3B46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21EDF852-9743-4F90-91AC-3165B2D3B46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F33B310-DC8D-4C0D-877E-BAC3908DE10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F33B310-DC8D-4C0D-877E-BAC3908DE10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F33B310-DC8D-4C0D-877E-BAC3908DE10F} = {1F1D8B7D-8AD5-4BBE-99A9-07AF7BB0867E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {36F5760C-0E05-4F07-A99F-9320FAA606CB}
