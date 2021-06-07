@@ -2,12 +2,11 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - 'BeatsaberOptimizer.sln'
       - 'BeatsaberOptimizer/**'
       - '.github/workflows/Build.yml'
-      - '.github/workflows/PRBuild.yml'
       - 'Refs/**'
 
 jobs:
