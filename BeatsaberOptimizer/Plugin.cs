@@ -38,7 +38,8 @@ namespace BeatsaberOptimizer
             PluginMetadata = pluginMetadata;
             Log = logger;
 
-            zenjector.OnGame<OptimizationInstaller>();
+            zenjector.OnGame<OptimizationInstaller>().ShortCircuitForMultiplayer();
+            zenjector.Register<OptimizationInstaller>().On<MultiplayerLocalActivePlayerInstaller>();
         }
 
         [OnStart]
