@@ -3,11 +3,15 @@
   "id": "BeatsaberOptimizer",
   "name": "BeatsaberOptimizer",
   "author": "Goobwabber",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Makes some things run more efficiently.",
-  "gameVersion": "1.16.1",
+  "gameVersion": "1.16.2",
   "dependsOn": {
     "BSIPA": "^4.1.4",
     "SiraUtil": "^2.5.2"
+  },
+  "links": {
+    "project-home": "https://github.com/Goobwabber/BeatsaberOptimizer",
+    "donate": "https://github.com/Goobwabber/BeatsaberOptimizer#donate"
   }
 }
