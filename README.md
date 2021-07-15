@@ -1,4 +1,4 @@
-# BeatsaberOptimizer [![Build](https://github.com/Goobwabber/BeatsaberOptimizer/workflows/Build/badge.svg?event=push)](https://github.com/Goobwabber/BeatsaberOptimizer/actions?query=workflow%3ABuild+branch%3Amain)
+# BeatsaberOptimizer ![Steam/PC-Only](https://goobi.moe/badges/api/v2/text?text=Steam/PC-Only&widthPadding=-80) [![Build](https://github.com/Goobwabber/BeatsaberOptimizer/workflows/Build/badge.svg?event=push)](https://github.com/Goobwabber/BeatsaberOptimizer/actions?query=workflow%3ABuild+branch%3Amain)
 A mod that optimizes some things to make the game run better on lower performance CPUs
 
 ## Features (More will be added when I notice them)
