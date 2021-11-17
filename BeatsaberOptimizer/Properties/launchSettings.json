@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "BeatsaberOptimizer": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Program Files (x86)\\Steam\\steam.exe",
-      "commandLineArgs": "-applaunch \"620980\" fpfc --verbose --debug"
-    }
-  }
-}

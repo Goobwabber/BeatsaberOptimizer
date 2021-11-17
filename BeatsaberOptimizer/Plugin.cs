@@ -1,70 +1,43 @@
-﻿using HarmonyLib;
+﻿using BeatsaberOptimizer.Installers;
+using HarmonyLib;
 using IPA;
 using IPA.Loader;
-using IPALogger = IPA.Logging.Logger;
-using System.Net.Http;
-using BeatsaberOptimizer.HarmonyPatches;
 using SiraUtil.Zenject;
-using BeatsaberOptimizer.Installers;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+using Conf = IPA.Config.Config;
+using IPALogger = IPA.Logging.Logger;
 
 namespace BeatsaberOptimizer
 {
     [Plugin(RuntimeOptions.SingleStartInit)]
-    public class Plugin
+    class Plugin
     {
-        public static readonly string HarmonyId = "com.github.Goobwabber.BeatsaberOptimizer";
-
-        internal static Plugin Instance { get; private set; } = null!;
-        internal static PluginMetadata PluginMetadata = null!;
-        internal static IPALogger Log { get; private set; } = null!;
-
-        internal static HttpClient HttpClient { get; private set; } = null!;
-        internal static Harmony? _harmony;
-        internal static Harmony Harmony
-        {
-            get
-            {
-                return _harmony ??= new Harmony(HarmonyId);
-            }
-        }
+        private readonly Harmony _harmony;
+        private readonly PluginMetadata _metadata;
+        public const string ID = "com.goobwabber.beatsaberoptimizer";
 
         [Init]
-        public Plugin(IPALogger logger, Zenjector zenjector, PluginMetadata pluginMetadata)
+        public Plugin(IPALogger logger, Conf conf, PluginMetadata pluginMetadata, Zenjector zenjector)
         {
-            Instance = this;
-            PluginMetadata = pluginMetadata;
-            Log = logger;
+            _harmony = new Harmony(ID);
+            _metadata = pluginMetadata;
 
-            zenjector.OnGame<OptimizationInstaller>().ShortCircuitForMultiplayer();
-            zenjector.Register<OptimizationInstaller>().On<MultiplayerLocalActivePlayerInstaller>();
+            zenjector.UseMetadataBinder<Plugin>();
+            zenjector.UseLogger(logger);
+            zenjector.UseHttpService();
+            zenjector.UseSiraSync(SiraUtil.Web.SiraSync.SiraSyncServiceType.GitHub, "Goobwabber", "BeatsaberOptimizer");
+            zenjector.Install<OptimizerGameInstaller>(Location.Player);
         }
 
-        [OnStart]
-        public void OnApplicationStart()
+        [OnEnable]
+        public void OnEnable()
         {
-            HarmonyManager.ApplyDefaultPatches();
-
-            //List<int> layerList = Enumerable.Range(0, 31).ToList();
-            //Log?.Info($"({LayerMask.LayerToName(11)}, {LayerMask.LayerToName(0)}): {Physics.GetIgnoreLayerCollision(0, 11)}");
-
-            //foreach (int layer in layerList)
-            //{
-            //    string name = LayerMask.LayerToName(layer).PadRight(26);
-            //    Log?.Info($"{name}: {LayerMask.LayerToName(8).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 8)}");
-            //    Log?.Info($"{name}: {LayerMask.LayerToName(9).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 9)}");
-            //    Log?.Info($"{name}: {LayerMask.LayerToName(11).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 11)}");
-            //    Log?.Info($"{name}: {LayerMask.LayerToName(12).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 12)}");
-            //    Log?.Info($"{name}: {LayerMask.LayerToName(16).PadRight(18)} {Physics.GetIgnoreLayerCollision(layer, 16)}");
-            //}
+            _harmony.PatchAll(_metadata.Assembly);
         }
 
-        [OnExit]
-        public void OnApplicationQuit()
+        [OnDisable]
+        public void OnDisable()
         {
-
+            _harmony.UnpatchAll(ID);
         }
     }
 }

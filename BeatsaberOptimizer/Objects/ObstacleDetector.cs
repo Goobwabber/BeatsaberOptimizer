@@ -1,32 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using IPA.Utilities;
+using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace BeatsaberOptimizer.Objects
 {
     public class ObstacleDetector : MonoBehaviour
     {
-        public List<ObstacleController> intersectingObstacles { get; protected set; } = new List<ObstacleController>();
-        protected BoxCollider collider = null!;
-        protected Rigidbody rigidbody = null!;
+        public const int MainObjectLayer = 9;
+        public const int WallObjectLayer = 11;
+        public const float ColliderSize = 0.05f;
 
-        [Inject]
-        internal void Inject() { }
+        public List<ObstacleController> IntersectingObstacles { get; private set; } = new ();
+        private BoxCollider _collider = null!;
+        private Rigidbody _rigidbody = null!;
+        private PlayerTransforms _playerTransforms;
+
+        private FieldAccessor<PlayerTransforms, Transform>.Accessor _headTransformAccessor
+            = FieldAccessor<PlayerTransforms, Transform>.GetAccessor("_headTransform");
+
+        internal ObstacleDetector(
+            PlayerTransforms playerTransforms)
+        {
+            _playerTransforms = playerTransforms;
+        }
 
         protected void Awake()
         {
-            rigidbody = gameObject.AddComponent<Rigidbody>();
-            rigidbody.isKinematic = true;
-            rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+            Transform headTransform = _headTransformAccessor(ref _playerTransforms);
+            gameObject.transform.SetParent(headTransform);
+            gameObject.layer = MainObjectLayer;
 
-            collider = gameObject.AddComponent<BoxCollider>();
-            collider.isTrigger = true;
-            collider.size = Vector3.one * 0.05f;
+            _rigidbody = gameObject.AddComponent<Rigidbody>();
+            _rigidbody.isKinematic = true;
+            _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
 
-            gameObject.layer = 9;
-
-            List<int> layerList = Enumerable.Range(0, 31).ToList();
+            _collider = gameObject.AddComponent<BoxCollider>();
+            _collider.isTrigger = true;
+            _collider.size = Vector3.one * ColliderSize;
         }
 
         protected void OnTriggerEnter(Collider other)
@@ -35,16 +45,16 @@ namespace BeatsaberOptimizer.Objects
                 return;
 
             Transform obstacle = other.transform.parent.parent;
-            intersectingObstacles.Add(obstacle.GetComponent<ObstacleController>());
+            IntersectingObstacles.Add(obstacle.GetComponent<ObstacleController>());
         }
 
         protected void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.layer != 11)
+            if (other.gameObject.layer != WallObjectLayer)
                 return;
 
             Transform obstacle = other.transform.parent.parent;
-            intersectingObstacles.Remove(obstacle.GetComponent<ObstacleController>());
+            IntersectingObstacles.Remove(obstacle.GetComponent<ObstacleController>());
         }
     }
 }
