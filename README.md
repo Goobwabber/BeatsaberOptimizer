@@ -1,8 +1,10 @@
-# BeatsaberOptimizer ![Steam/PC-Only](https://goobi.moe/badges/api/v2/text?text=Steam/PC-Only&widthPadding=-80) [![Build](https://github.com/Goobwabber/BeatsaberOptimizer/workflows/Build/badge.svg?event=push)](https://github.com/Goobwabber/BeatsaberOptimizer/actions?query=workflow%3ABuild+branch%3Amain)
+# BeatsaberOptimizer (PC-Only) [![Build](https://github.com/Goobwabber/BeatsaberOptimizer/workflows/Build/badge.svg?event=push)](https://github.com/Goobwabber/BeatsaberOptimizer/actions?query=workflow%3ABuild+branch%3Amain)
 A mod that optimizes some things to make the game run better on lower performance CPUs
 
-## Features (More will be added when I notice them)
+## Features
 * Makes wall maps much less laggy
+
+More optimizations will be added when I find them or if they are reported.
 
 ## Installation
 1. Ensure you have the [required mods](https://github.com/Goobwabber/BeatsaberOptimizer#requirements)
@@ -14,8 +16,9 @@ A mod that optimizes some things to make the game run better on lower performanc
 4. **Optional**: Edit `Beat Saber IPA.json` (in your `UserData` folder) and change `Debug` -> `ShowCallSource` to `true`. This will enable BSIPA to get file and line numbers from the `PDB` file where errors occur, which is very useful when reading the log files. This may have a *slight* impact on performance.
 
 ## Requirements
-These can be downloaded from [BeatMods](https://beatmods.com/#/mods) or using Mod Assistant. **Do NOT use any of the DLLs in the `Refs` folder, they have been stripped of code and will not work.**
-* SiraUtil 2.4.0+
+These can be downloaded from [BeatMods](https://beatmods.com/#/mods) or using Mod Assistant.
+* BSIPA 4.2.0+
+* SiraUtil 3.0.0+
 
 ## Reporting Issues
 * The best way to report issues is to click on the `Issues` tab at the top of the GitHub page. This allows any contributor to see the problem and attempt to fix it, and others with the same issue can contribute more information. **Please try the troubleshooting steps before reporting the issues listed there. Please only report issues after using the latest build, your problem may have already been fixed.**
@@ -48,3 +51,4 @@ Visual Studio 2019 with the [BeatSaberModdingTools](https://github.com/Zingabopp
 ## Donate
 You can support development of BeatsaberOptimizer by donating at the following links:
 * https://ko-fi.com/goobwabber
+* https://www.patreon.com/goobwabber
