@@ -16,9 +16,10 @@ namespace BeatsaberOptimizer.Patchers
 
         [AffinityPrefix]
         [AffinityPatch(typeof(PlayerHeadAndObstacleInteraction), nameof(PlayerHeadAndObstacleInteraction.intersectingObstacles), AffinityMethodType.Getter)]
-        private void GetIntersectingObstacles(ref List<ObstacleController> __result)
+        private bool GetIntersectingObstacles(ref List<ObstacleController> __result)
         {
             __result = _obstacleDetector.IntersectingObstacles;
+            return false;
         }
     }
 }
